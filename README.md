@@ -6,78 +6,70 @@ This project analyzes the effectiveness of various factors on email campaign cli
 ## Dataset
 The dataset, named email_campaign_dataset.csv, includes the following columns:
 
-campaign_id: Unique identifier for each campaign.  
-sender: Identifier for the sender of the campaign.  
-subject_len: Length of the email subject.  
-body_len: Length of the email body.  
-mean_paragraph_len: Average length of paragraphs in the email body.  
-day_of_week: Day of the week the email was sent.  
-is_weekend: Indicates if the email was sent on a weekend (1) or not (0).  
-times_of_day: Time of day the email was sent (e.g., Morning, Noon, Evening).  
-category: Category of the email campaign.  
-product: Product associated with the campaign.  
-no_of_CTA: Number of Call-To-Actions (CTAs) in the email.  
-mean_CTA_len: Average length of CTAs.  
-is_image: Indicates if the email contains images.  
-is_personalised: Indicates if the email is personalized (1) or not (0).  
-is_quote: Indicates if the email contains quotes.  
-is_timer: Indicates if the email contains a timer.  
-is_emoticons: Indicates if the email contains emoticons.  
-is_discount: Indicates if the email offers a discount (1) or not (0).  
-is_price: Indicates if the email mentions a price.  
-is_urgency: Indicates if the email conveys urgency.  
-target_audience: Target audience identifier.  
-click_rate: Click rate for the email campaign.  
+| Column               | Description                                             |
+| -------------------- | ------------------------------------------------------- |
+| `campaign_id`        | Unique identifier for each campaign                     |
+| `sender`             | Identifier for the sender of the campaign               |
+| `subject_len`        | Length of the email subject                             |
+| `body_len`           | Length of the email body                                |
+| `mean_paragraph_len` | Average length of paragraphs in the email body          |
+| `day_of_week`        | Day of the week the email was sent                      |
+| `is_weekend`         | 1 if the email was sent on a weekend, 0 otherwise       |
+| `times_of_day`       | Time of day the email was sent (Morning, Noon, Evening) |
+| `category`           | Category of the email campaign                          |
+| `product`            | Product associated with the campaign                    |
+| `no_of_CTA`          | Number of Call-To-Actions (CTAs) in the email           |
+| `mean_CTA_len`       | Average length of CTAs                                  |
+| `is_image`           | Indicates if the email contains images                  |
+| `is_personalised`    | 1 if the email is personalized, 0 otherwise             |
+| `is_quote`           | Indicates if the email contains quotes                  |
+| `is_timer`           | Indicates if the email contains a timer                 |
+| `is_emoticons`       | Indicates if the email contains emoticons               |
+| `is_discount`        | 1 if the email offers a discount, 0 otherwise           |
+| `is_price`           | Indicates if the email mentions a price                 |
+| `is_urgency`         | Indicates if the email conveys urgency                  |
+| `target_audience`    | Target audience identifier                              |
+| `click_rate`         | Click rate for the email campaign                       |
 
 ## Data Analysis
-1. Click Rate vs. is_weekend
-Welch Two Sample t-test Results
-t = -4.2272
-df = 488.24
-p-value = 2.825e-05
-95 percent confidence interval: -0.03521475 to -0.01286646
-mean in group 0 (Weekdays) = 0.03708708
-mean in group 1 (Weekends) = 0.06112769
-Conclusion: Emails sent on weekends tend to have higher click rates compared to those sent on weekdays.
+1. Weekend vs. Weekday Emails
+**Test**: Welch Two Sample t-test
+**Result**: t = -4.2272, df = 488.24, p-value = 2.825e-05
+**Observation**: Emails sent on weekends have higher click rates than those sent on weekdays.
+**Mean Click Rates**: Weekdays = 0.0371, Weekends = 0.0611
 
-2. Click Rate vs. is_personalised
-Welch Two Sample t-test Results
-t = -1.2945
-df = 116.39
-p-value = 0.1981
-95 percent confidence interval: -0.030331960 to 0.006354349
-mean in group 0 (Non-personalized) = 0.04120811
-mean in group 1 (Personalized) = 0.05319692
-Conclusion: Personalizing emails does not significantly affect the click rates.
+2. Personalisation
+**Test**: Welch Two Sample t-test
+**Result**: t = -1.2945, df = 116.39, p-value = 0.1981
+**Observation**: Personalizing emails does not significantly affect click rates.
+**Mean Click Rates**: Non-personalized = 0.0412, Personalized = 0.0532
 
-3. Click Rate vs. times_of_day
-ANOVA Test Results
-Df = 2
-Sum Sq = 0.351
-Mean Sq = 0.17567
-F value = 25.41
-p-value = 1.3e-11
-Conclusion: The time of day has a significant effect on click rates, with Morning having the highest click rates, followed by Noon, and then Evening.
+3. Time of Day
+**Test**: ANOVA
+**Result**: F = 25.41, p-value = 1.3e-11
+**Observation**: Time of day significantly affects click rates: Morning > Noon > Evening
 
 Tukey's HSD Test Results
-Morning vs. Evening: diff = 0.04613180, p adj = 0.0000000
-Noon vs. Evening: diff = 0.02193865, p adj = 0.0000046
-Noon vs. Morning: diff = -0.02419314, p adj = 0.0116831
-Conclusion: Morning click rates are significantly higher than Evening click rates. Noon click rates are significantly higher than Evening click rates. Noon click rates are significantly lower than Morning click rates.
+| Comparison         | Difference | p-adjusted |
+| ------------------ | ---------- | ---------- |
+| Morning vs Evening | 0.0461     | 0.0000     |
+| Noon vs Evening    | 0.0219     | 0.0000046  |
+| Noon vs Morning    | -0.0242    | 0.0117     |
 
-4. Click Rate vs. is_discount
-Welch Two Sample t-test Results
-t = 17.819
-df = 1844.9
-p-value < 2.2e-16
-95 percent confidence interval: 0.03303476 to 0.04120625
-mean in group 0 (No Discount) = 0.043362161
-mean in group 1 (Discount) = 0.006241661
-Conclusion: Emails offering discounts have significantly lower click rates compared to those that do not offer discounts.
+4. Discounted Emails
+**Test**: Welch Two Sample t-test
+**Result**: t = 17.819, df = 1844.9, p-value < 2.2e-16
+**Observation**: Emails offering discounts have significantly lower click rates than emails without discounts.
+**Mean Click Rates**: No Discount = 0.0434, Discount = 0.0062
 
-Repository Contents  
+## Repository Contents  
 email_campaign_dataset.csv: The dataset used for analysis.  
 analysis.R: R script containing the code for data analysis and statistical tests.
 
 ## Conclusion
-This analysis provides insights into the factors that influence email campaign click rates. By understanding the impact of different variables, we can optimize email campaigns to achieve higher engagement.
+This analysis identifies key factors that influence email campaign click rates. Key insights include:
+- Emails sent on weekends receive higher engagement than weekday emails.
+- Personalization does not significantly impact click rates.
+- Time of day is important, with morning emails performing best.
+- Surprisingly, emails offering discounts have lower click rates than non-discount emails.
+- These findings can inform strategies for crafting email campaigns to maximize engagement and conversion.
