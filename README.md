@@ -9,6 +9,7 @@ The goal is to identify which campaign strategies improve email performance and 
 The dataset contains information about multiple email marketing campaigns and their performance metrics.
 
 Source: Email Campaign Dataset
+
 File: email_campaign_dataset.csv
 
 Each record represents one campaign and includes features describing the structure and content of the email.
@@ -59,21 +60,21 @@ All analysis was performed using R and the tidyverse ecosystem.
 
 ## Key Findings
 1. Weekend vs. Weekday Emails
-**Test**: Welch Two Sample t-test
-**Result**: t = -4.2272, df = 488.24, p-value = 2.825e-05
-**Observation**: Emails sent on weekends have higher click rates than those sent on weekdays.
-**Mean Click Rates**: Weekdays = 0.0371, Weekends = 0.0611
+- **Test**: Welch Two Sample t-test
+- **Result**: t = -4.2272, df = 488.24, p-value = 2.825e-05
+- **Observation**: Emails sent on weekends have higher click rates than those sent on weekdays.
+- **Mean Click Rates**: Weekdays = 0.0371, Weekends = 0.0611
 
 2. Personalisation
-**Test**: Welch Two Sample t-test
-**Result**: t = -1.2945, df = 116.39, p-value = 0.1981
-**Observation**: Personalizing emails does not significantly affect click rates.
-**Mean Click Rates**: Non-personalized = 0.0412, Personalized = 0.0532
+- **Test**: Welch Two Sample t-test
+- **Result**: t = -1.2945, df = 116.39, p-value = 0.1981
+- **Observation**: Personalizing emails does not significantly affect click rates.
+- **Mean Click Rates**: Non-personalized = 0.0412, Personalized = 0.0532
 
 3. Time of Day
-**Test**: ANOVA
-**Result**: F = 25.41, p-value = 1.3e-11
-**Observation**: Time of day significantly affects click rates: Morning > Noon > Evening
+- **Test**: ANOVA
+- **Result**: F = 25.41, p-value = 1.3e-11
+- **Observation**: Time of day significantly affects click rates: Morning > Noon > Evening
 
 Tukey's HSD Test Results
 | Comparison         | Difference | p-adjusted |
@@ -83,12 +84,13 @@ Tukey's HSD Test Results
 | Noon vs Morning    | -0.0242    | 0.0117     |
 
 4. Discounted Emails
-**Test**: Welch Two Sample t-test
-**Result**: t = 17.819, df = 1844.9, p-value < 2.2e-16
-**Observation**: Emails offering discounts have significantly lower click rates than emails without discounts.
-**Mean Click Rates**: No Discount = 0.0434, Discount = 0.0062
+- **Test**: Welch Two Sample t-test
+- **Result**: t = 17.819, df = 1844.9, p-value < 2.2e-16
+- **Observation**: Emails offering discounts have significantly lower click rates than emails without discounts.
+- **Mean Click Rates**: No Discount = 0.0434, Discount = 0.0062
 
 ## Marketing Recommendations
+
 Based on the analysis:
 - Schedule marketing emails on weekends when possible
 - Prioritize morning send times for higher engagement
@@ -96,5 +98,6 @@ Based on the analysis:
 - Test combinations of personalization with other content features
 
 ## Repository Contents  
+
 email_campaign_dataset.csv: The dataset used for analysis.  
 analysis.R: R script containing the code for data analysis and statistical tests.
