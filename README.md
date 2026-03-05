@@ -1,10 +1,17 @@
-# Email Campaign Data Analysis
+# Email Marketing Campaign A/B Testing Analysis
 
 ## Introduction
-This project analyzes the effectiveness of various factors on email campaign click rates using a dataset of email campaigns. The dataset includes information on whether the email contained discounts, personalization, images, and other features, as well as the time of day and day of the week the email was sent.
+This project analyzes how different email campaign features affect click-through rates. Using statistical hypothesis testing in R, the analysis evaluates whether factors such as personalization, timing, and discounts significantly influence user engagement.
+
+The goal is to identify which campaign strategies improve email performance and provide recommendations for optimizing marketing campaigns.
 
 ## Dataset
-The dataset, named email_campaign_dataset.csv, includes the following columns:
+The dataset contains information about multiple email marketing campaigns and their performance metrics.
+
+Source: Email Campaign Dataset
+File: email_campaign_dataset.csv
+
+Each record represents one campaign and includes features describing the structure and content of the email.
 
 | Column               | Description                                             |
 | -------------------- | ------------------------------------------------------- |
@@ -31,7 +38,26 @@ The dataset, named email_campaign_dataset.csv, includes the following columns:
 | `target_audience`    | Target audience identifier                              |
 | `click_rate`         | Click rate for the email campaign                       |
 
-## Data Analysis
+The target metric analyzed is:
+
+Click Rate – percentage of recipients who clicked a link in the email.
+
+## Business Questions
+- The analysis focuses on answering several marketing optimization questions:
+- Do emails sent on weekends perform better than weekday campaigns?
+- Does personalization increase click-through rates?
+- What is the best time of day to send marketing emails?
+- Do discount offers increase user engagement?
+
+## Methodology
+The analysis uses statistical hypothesis testing to evaluate whether differences in click rates are statistically significant. The following tests were performed:
+- Welch Two Sample t-tests for binary variables
+- One-way ANOVA for time-of-day comparisons
+- Tukey HSD post-hoc testing to identify group differences
+
+All analysis was performed using R and the tidyverse ecosystem.
+
+## Key Findings
 1. Weekend vs. Weekday Emails
 **Test**: Welch Two Sample t-test
 **Result**: t = -4.2272, df = 488.24, p-value = 2.825e-05
@@ -62,14 +88,13 @@ Tukey's HSD Test Results
 **Observation**: Emails offering discounts have significantly lower click rates than emails without discounts.
 **Mean Click Rates**: No Discount = 0.0434, Discount = 0.0062
 
+## Marketing Recommendations
+Based on the analysis:
+- Schedule marketing emails on weekends when possible
+- Prioritize morning send times for higher engagement
+- Avoid relying solely on discount messaging
+- Test combinations of personalization with other content features
+
 ## Repository Contents  
 email_campaign_dataset.csv: The dataset used for analysis.  
 analysis.R: R script containing the code for data analysis and statistical tests.
-
-## Conclusion
-This analysis identifies key factors that influence email campaign click rates. Key insights include:
-- Emails sent on weekends receive higher engagement than weekday emails.
-- Personalization does not significantly impact click rates.
-- Time of day is important, with morning emails performing best.
-- Surprisingly, emails offering discounts have lower click rates than non-discount emails.
-- These findings can inform strategies for crafting email campaigns to maximize engagement and conversion.
